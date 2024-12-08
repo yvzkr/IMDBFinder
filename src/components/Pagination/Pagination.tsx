@@ -11,6 +11,11 @@ export function Pagination({
   currentPage,
   onPageChange,
 }: PaginationProps) {
+  // If there's only one page or no pages, don't show pagination
+  if (totalPages <= 1) {
+    return null;
+  }
+
   const handlePrevious = () => {
     if (currentPage > 1) {
       onPageChange(currentPage - 1);
@@ -23,24 +28,13 @@ export function Pagination({
     }
   };
 
-  if (totalPages === 0) {
-    return null;
-  }
-
   return (
     <div className={classes.pagination}>
-      <button onClick={handlePrevious} disabled={currentPage === 1}>
-        Previous
-      </button>
+      {currentPage > 1 && <button onClick={handlePrevious}>Previous</button>}
       <span>
         Page {currentPage} of {totalPages}
       </span>
-      <button
-        onClick={handleNext}
-        disabled={currentPage === totalPages || totalPages === 0}
-      >
-        Next
-      </button>
+      {currentPage < totalPages && <button onClick={handleNext}>Next</button>}
     </div>
   );
 }

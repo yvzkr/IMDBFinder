@@ -1,0 +1,28 @@
+@import '@fontsource/poppins/300.css'; // light
+@import '@fontsource/poppins/400.css'; // regular
+@import '@fontsource/poppins/500.css'; // medium
+@import '@fontsource/poppins/600.css'; // semibold
+@import '@fontsource/poppins/700.css'; // bold
+
+// Font Variables
+$font-family-primary: 'Poppins', sans-serif;
+
+// Font Weights
+$font-light: 300;
+$font-regular: 400;
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+
+// Font Sizes
+$font-size-xs: 0.75rem; // 12px
+$font-size-sm: 0.875rem; // 14px
+$font-size-base: 1rem; // 16px
+$font-size-lg: 1.125rem; // 18px
+$font-size-xl: 1.25rem; // 20px
+$font-size-2xl: 1.5rem; // 24px
+$font-size-3xl: 2rem; // 32px
+
+// For code blocks if needed
+$font-family-code: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;

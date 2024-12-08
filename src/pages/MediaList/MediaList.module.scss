@@ -1,3 +1,20 @@
+@import '../../styles/variables';
+
 .mediaList {
-  padding: 20px;
+  padding: 2rem;
+  background-color: $background-light;
+  min-height: 100vh;
+}
+
+.pageTitle {
+  color: $primary-blue;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.contentWrapper {
+  background-color: $white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px $primary-blue-shadow;
 }

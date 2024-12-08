@@ -15,11 +15,14 @@ function MediaList() {
 
   return (
     <div className={classes.mediaList}>
-      <MediaTable
-        mediaData={mediaData}
-        onChangeFilter={handleOnChangeFilter}
-        loading={isFetching}
-      />
+      <h1 className={classes.pageTitle}>Media Library</h1>
+      <div className={classes.contentWrapper}>
+        <MediaTable
+          mediaData={mediaData}
+          onChangeFilter={handleOnChangeFilter}
+          loading={isFetching}
+        />
+      </div>
     </div>
   );
 }

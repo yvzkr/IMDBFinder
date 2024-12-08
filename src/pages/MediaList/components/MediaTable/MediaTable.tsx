@@ -1,7 +1,11 @@
 import {useCallback, useMemo} from 'react';
 import {TableGrid} from '../../../../components';
 import {Pagination} from '../../../../components/Pagination';
-import {ApiResponse, MediaItem, TableGridParam} from '../../../../interfaces';
+import {
+  ApiResponseWithSearch,
+  MediaItem,
+  TableGridParam,
+} from '../../../../interfaces';
 import {FilterTitle, FilterType, FilterYear} from './components';
 import classes from './MediaTable.module.scss';
 import {useDataGridParams} from '../../../../hooks';
@@ -17,7 +21,7 @@ function getQueryString(param: TableGridParam): string {
 }
 
 interface MediaTableProps {
-  mediaData: ApiResponse<MediaItem[]>;
+  mediaData: ApiResponseWithSearch<MediaItem[]>;
   onChangeFilter: (query: string) => void;
   loading: boolean;
 }

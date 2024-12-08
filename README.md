@@ -21,8 +21,8 @@ This application is a media management interface built with React, TypeScript, a
 1. Clone the repository:
 
 ```bash
-git clone [repository-url]
-cd [project-directory]
+git clone git@github.com:yvzkr/IMDBFinder.git
+cd IMDBFinder
 ```
 
 2. Install dependencies:

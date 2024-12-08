@@ -1,0 +1,75 @@
+.tableGrid {
+  width: 100%;
+  overflow-x: auto;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.tableHeader {
+  background-color: #f8f9fa;
+}
+
+.tableHeaderRow {
+  border-bottom: 2px solid #e9ecef;
+}
+
+.tableHeaderCell {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tableBodyRow {
+  border-bottom: 1px solid #e9ecef;
+  transition: background-color 0.2s ease;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background-color: #f8f9fa;
+  }
+}
+
+.tableBodyCell {
+  padding: 1rem;
+  color: #212529;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  vertical-align: middle;
+}
+
+// Responsive tasarım için
+@media (max-width: 768px) {
+  .tableGrid {
+    padding: 0.5rem;
+  }
+
+  .tableHeaderCell,
+  .tableBodyCell {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+}
+
+.centered {
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.tableBodyRowLoader {
+  margin: 0 auto;
+}

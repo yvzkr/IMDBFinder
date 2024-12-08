@@ -4,13 +4,17 @@ import './styles/index.scss';
 import App from './App.tsx';
 import {BrowserRouter} from 'react-router-dom';
 import {SplashScreen} from './components';
+import {Provider} from 'react-redux';
+import {store} from './store';
 
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Suspense fallback={<SplashScreen />}>
-        <App />
-      </Suspense>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Suspense fallback={<SplashScreen />}>
+          <App />
+        </Suspense>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );

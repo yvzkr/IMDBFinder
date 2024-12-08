@@ -34,7 +34,11 @@ export function FilterTitle({value, onChange}: FilterTitleProps) {
 
   return (
     <div className={classes.filterTitle}>
+      <label htmlFor="title-search" className={classes.label}>
+        Search Title
+      </label>
       <input
+        id="title-search"
         type="text"
         value={searchTerm}
         onChange={handleInputChange}

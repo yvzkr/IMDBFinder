@@ -1,4 +1,4 @@
-import {useEffect, useState, useCallback} from 'react';
+import {useEffect, useState} from 'react';
 import classes from './FilterTitle.module.scss';
 import {debounce} from 'lodash';
 
@@ -15,22 +15,21 @@ export function FilterTitle({value, onChange}: FilterTitleProps) {
     setSearchTerm(e.target.value);
   };
 
-  // Debounce fonksiyonu ile onChange'i sarmalayın
-  const debouncedOnChange = useCallback(
-    debounce((value: string) => {
-      if (searchTerm === value) return;
-      onChange(value);
-    }, 300),
-    [onChange]
-  ); // onChange bağımlılığı eklendi
+  const debouncedOnChange = debounce((value: string) => {
+    onChange(value);
+  }, 300);
 
   useEffect(() => {
     setSearchTerm(value);
-  }, [value]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
-    debouncedOnChange(searchTerm); // Debounced onChange'i çağır
-    return debouncedOnChange.cancel; // Temizleme fonksiyonu
+    debouncedOnChange(searchTerm);
+    return () => {
+      debouncedOnChange.cancel();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm]);
 
   return (

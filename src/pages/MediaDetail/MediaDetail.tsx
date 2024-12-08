@@ -2,6 +2,7 @@ import {useParams, useNavigate} from 'react-router-dom';
 import {useGetMediaDetailQuery} from '../../services/media.service';
 import {MediaDetailSkeleton} from './components/MediaDetailSkeleton';
 import classes from './MediaDetail.module.scss';
+import defaultPoster from '../../images/poster.png';
 
 function MediaDetail() {
   const {id} = useParams();
@@ -29,7 +30,7 @@ function MediaDetail() {
       <div className={classes.content}>
         <div className={classes.posterWrapper}>
           <img
-            src={data.Poster !== 'N/A' ? data.Poster : '/placeholder-image.png'}
+            src={data.Poster !== 'N/A' ? data.Poster : defaultPoster}
             alt={data.Title}
             className={classes.poster}
           />

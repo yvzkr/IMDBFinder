@@ -1,19 +1,39 @@
-html,
-body,
-#root {
-  height: 100dvh;
+@import './variables';
+@import './font';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  color: #000;
-  font-size: 14px;
+  font-family: $font-family-primary;
+  font-weight: $font-regular;
+  font-size: $font-size-base;
+  line-height: 1.5;
+  color: $primary-blue;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  color: inherit;
-  text-decoration: inherit;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-primary;
+  font-weight: $font-semibold;
 }
 
-p {
-  margin: 0;
+.pageTitle {
+  font-size: $font-size-3xl;
+  font-weight: $font-semibold;
+}
+
+input,
+select,
+button {
+  font-family: $font-family-primary;
 }

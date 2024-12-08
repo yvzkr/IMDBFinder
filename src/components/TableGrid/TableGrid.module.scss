@@ -1,9 +1,12 @@
+@import '../../styles/variables';
+@import '../../styles/font';
+
 .tableGrid {
   width: 100%;
   overflow-x: auto;
-  background: #ffffff;
+  background: $white;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px $primary-blue-shadow;
   padding: 1rem;
 }
 
@@ -14,25 +17,26 @@
 }
 
 .tableHeader {
-  background-color: #f8f9fa;
+  background-color: $primary-blue;
 }
 
 .tableHeaderRow {
-  border-bottom: 2px solid #e9ecef;
+  border-bottom: 2px solid $border-color;
 }
 
 .tableHeaderCell {
   padding: 1rem;
   text-align: left;
-  font-weight: 600;
-  color: #495057;
-  font-size: 0.95rem;
+  font-weight: $font-semibold;
+  color: $white;
+  font-size: $font-size-sm;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  font-family: $font-family-primary;
 }
 
 .tableBodyRow {
-  border-bottom: 1px solid #e9ecef;
+  border-bottom: 1px solid $border-color;
   transition: background-color 0.2s ease;
 
   &:last-child {
@@ -40,16 +44,29 @@
   }
 
   &:hover {
-    background-color: #f8f9fa;
+    background-color: $primary-red-light;
+    cursor: pointer;
   }
 }
 
 .tableBodyCell {
   padding: 1rem;
-  color: #212529;
-  font-size: 0.9rem;
+  color: $primary-blue;
+  font-size: $font-size-sm;
   line-height: 1.5;
   vertical-align: middle;
+  font-family: $font-family-primary;
+}
+
+.centered {
+  text-align: center;
+  font-size: $font-size-lg;
+  color: $text-gray;
+  font-family: $font-family-primary;
+}
+
+.tableBodyRowLoader {
+  margin: 0 auto;
 }
 
 @media (max-width: 768px) {
@@ -64,11 +81,21 @@
   }
 }
 
-.centered {
-  text-align: center;
-  font-size: 1.2rem;
+.tableHeaderCell,
+.tableBodyCell {
+  .skeleton {
+    border-radius: 4px;
+  }
 }
 
-.tableBodyRowLoader {
-  margin: 0 auto;
+.tableHeaderCell {
+  .skeleton {
+    background-color: rgba($white, 0.2);
+  }
+}
+
+.tableBodyCell {
+  .skeleton {
+    background-color: rgba($primary-blue, 0.1);
+  }
 }

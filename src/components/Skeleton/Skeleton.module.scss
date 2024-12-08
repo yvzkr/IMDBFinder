@@ -1,0 +1,32 @@
+@import '../../styles/variables';
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.skeleton {
+  background-color: rgba($primary-blue, 0.1);
+  animation: pulse 1.5s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+.text {
+  height: 1rem;
+  border-radius: 4px;
+}
+
+.rectangular {
+  border-radius: 4px;
+}
+
+.circular {
+  border-radius: 50%;
+}

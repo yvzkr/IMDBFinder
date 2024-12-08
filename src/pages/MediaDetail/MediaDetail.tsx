@@ -1,22 +1,42 @@
-import {useParams} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 import {useGetMediaDetailQuery} from '../../services/media.service';
-import {Loader} from '../../components';
+import {MediaDetailSkeleton} from './components/MediaDetailSkeleton';
 import classes from './MediaDetail.module.scss';
+import defaultPoster from '../../images/poster.png';
+import {useApiKey} from '../../hooks';
 
 function MediaDetail() {
   const {id} = useParams();
-  const {data} = useGetMediaDetailQuery({id: id ?? ''});
+  const navigate = useNavigate();
+  const {apiKey} = useApiKey();
+
+  const {data, isLoading} = useGetMediaDetailQuery({
+    id: id ?? '',
+    apiKey: apiKey || '',
+  });
+
+  const handleBack = () => {
+    navigate(-1);
+  };
+
+  if (isLoading) {
+    return <MediaDetailSkeleton />;
+  }
 
   if (!data) {
-    return <Loader />;
+    return null;
   }
 
   return (
     <div className={classes.container}>
+      <button onClick={handleBack} className={classes.backButton}>
+        ← Back to List
+      </button>
+
       <div className={classes.content}>
         <div className={classes.posterWrapper}>
           <img
-            src={data.Poster !== 'N/A' ? data.Poster : '/placeholder-image.png'}
+            src={data.Poster !== 'N/A' ? data.Poster : defaultPoster}
             alt={data.Title}
             className={classes.poster}
           />

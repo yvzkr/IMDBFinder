@@ -16,7 +16,11 @@ export function FilterYear({value, onChange}: FilterYearProps) {
 
   return (
     <div className={classes.filterYear}>
+      <label htmlFor="year-select" className={classes.label}>
+        Release Year
+      </label>
       <select
+        id="year-select"
         value={value || currentYear.toString()}
         onChange={handleChange}
         className={classes.filterSelect}

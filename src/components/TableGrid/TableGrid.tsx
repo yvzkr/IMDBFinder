@@ -1,5 +1,5 @@
 import classes from './TableGrid.module.scss';
-import {Loader} from '../Loader';
+import {TableGridSkeleton} from './TableGridSkeleton';
 
 export type TData = {
   id: string;
@@ -25,6 +25,10 @@ export function TableGrid<Header, Column extends TData>({
     }
   };
 
+  if (loading) {
+    return <TableGridSkeleton columns={headers.length} />;
+  }
+
   return (
     <div className={classes.tableGrid}>
       <table className={classes.table}>
@@ -42,13 +46,6 @@ export function TableGrid<Header, Column extends TData>({
         </thead>
 
         <tbody>
-          {loading && (
-            <tr className={classes.tableBodyRow}>
-              <td colSpan={headers.length} className={classes.tableBodyRow}>
-                <Loader className={classes.tableBodyRowLoader} />
-              </td>
-            </tr>
-          )}
           {rows.length === 0 && (
             <tr className={classes.tableBodyRow}>
               <td colSpan={headers.length} className={classes.centered}>
@@ -74,8 +71,3 @@ export function TableGrid<Header, Column extends TData>({
     </div>
   );
 }
-/*
-<td key={columnIndex} className={classes.tableBodyCell}>
-                    <>{item}</>
-                  </td>
-*/

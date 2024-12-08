@@ -13,7 +13,11 @@ export function FilterType({value, onChange}: FilterTypeProps) {
 
   return (
     <div className={classes.filterType}>
+      <label htmlFor="type-select" className={classes.label}>
+        Media Type
+      </label>
       <select
+        id="type-select"
         value={value}
         onChange={handleChange}
         className={classes.filterSelect}

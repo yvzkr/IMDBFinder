@@ -1,22 +1,15 @@
-import loadable from '@loadable/component';
-import {Navigate, Route, Routes} from 'react-router-dom';
-import {FC} from 'react';
-
-const MediaList = loadable<FC>(
-  () => import('./pages/MediaList/MediaList')
-) as unknown as FC;
-
-const MediaDetail = loadable<FC>(
-  () => import('./pages/MediaDetail/MediaDetail')
-) as unknown as FC;
+import {ApiKeyModal} from './components/ApiKeyModal/ApiKeyModal';
+import {Router} from './Router';
+import {useApiKey} from './hooks';
 
 function App() {
+  const {isModalOpen} = useApiKey();
+
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/search" replace={true} />} />
-      <Route path="/search" element={<MediaList />} />
-      <Route path="/:id" element={<MediaDetail />} />
-    </Routes>
+    <>
+      {isModalOpen && <ApiKeyModal />}
+      <Router />
+    </>
   );
 }
 

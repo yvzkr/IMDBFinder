@@ -1,9 +1,10 @@
-import {useCallback, useMemo, useState} from 'react';
+import {useCallback, useMemo} from 'react';
 import {TableGrid} from '../../../../components';
 import {Pagination} from '../../../../components/Pagination';
 import {ApiResponse, MediaItem, TableGridParam} from '../../../../interfaces';
 import {FilterTitle, FilterType, FilterYear} from './components';
 import classes from './MediaTable.module.scss';
+import {useDataGridParams} from '../../../../hooks';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -25,11 +26,7 @@ export function MediaTable({
   onChangeFilter,
   loading,
 }: MediaTableProps) {
-  const [params, setParams] = useState<TableGridParam>({
-    page: 1,
-    s: 'Pokemon',
-    y: '2024',
-  });
+  const {params, setParams} = useDataGridParams();
 
   const rows = useMemo(() => {
     return (
@@ -87,6 +84,7 @@ export function MediaTable({
         rows={rows}
         loading={loading}
       />
+
       <Pagination
         currentPage={params.page}
         totalPages={totalPages}

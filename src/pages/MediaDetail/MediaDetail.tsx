@@ -1,19 +1,23 @@
 import {useParams, useNavigate} from 'react-router-dom';
 import {useGetMediaDetailQuery} from '../../services/media.service';
-import {Loader} from '../../components';
+import {MediaDetailSkeleton} from './components/MediaDetailSkeleton';
 import classes from './MediaDetail.module.scss';
 
 function MediaDetail() {
   const {id} = useParams();
   const navigate = useNavigate();
-  const {data} = useGetMediaDetailQuery({id: id ?? ''});
+  const {data, isLoading} = useGetMediaDetailQuery({id: id ?? ''});
 
   const handleBack = () => {
     navigate(-1);
   };
 
+  if (isLoading) {
+    return <MediaDetailSkeleton />;
+  }
+
   if (!data) {
-    return <Loader />;
+    return null;
   }
 
   return (

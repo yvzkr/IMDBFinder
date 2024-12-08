@@ -1,5 +1,10 @@
+import clsx from 'clsx';
 import classes from './Loader.module.scss';
 
-export function Loader() {
-  return <div className={classes.loader}></div>;
+interface LoaderProps {
+  className?: string;
+}
+
+export function Loader({className}: LoaderProps) {
+  return <div className={clsx(classes.loader, className)}></div>;
 }

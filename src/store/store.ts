@@ -1,10 +1,12 @@
 import {configureStore} from '@reduxjs/toolkit';
-import counterReducer from './reducers/counterSlice';
+import {mediaService} from '../services/media.service';
 
 const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    [mediaService.reducerPath]: mediaService.reducer,
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware().concat(mediaService.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

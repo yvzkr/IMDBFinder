@@ -2,19 +2,20 @@ import loadable from '@loadable/component';
 import {Navigate, Route, Routes} from 'react-router-dom';
 import {FC} from 'react';
 
-const Movies = loadable<FC>(
-  () => import('./pages/Movies/Movies')
+const MediaList = loadable<FC>(
+  () => import('./pages/MediaList/MediaList')
 ) as unknown as FC;
-const MovieDetail = loadable<FC>(
-  () => import('./pages/MoviesDetail/MoviesDetail')
+
+const MediaDetail = loadable<FC>(
+  () => import('./pages/MediaDetail/MediaDetail')
 ) as unknown as FC;
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/movies" replace={true} />} />
-      <Route path="/movies" element={<Movies />} />
-      <Route path="/movies/:id" element={<MovieDetail />} />
+      <Route path="/" element={<Navigate to="/search" replace={true} />} />
+      <Route path="/search" element={<MediaList />} />
+      <Route path="/:id" element={<MediaDetail />} />
     </Routes>
   );
 }

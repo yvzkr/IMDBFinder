@@ -1,10 +1,15 @@
 import {useCallback, useMemo} from 'react';
 import {TableGrid} from '../../../../components';
 import {Pagination} from '../../../../components/Pagination';
-import {ApiResponse, MediaItem, TableGridParam} from '../../../../interfaces';
+import {
+  ApiResponseWithSearch,
+  MediaItem,
+  TableGridParam,
+} from '../../../../interfaces';
 import {FilterTitle, FilterType, FilterYear} from './components';
 import classes from './MediaTable.module.scss';
 import {useDataGridParams} from '../../../../hooks';
+import {useNavigate} from 'react-router-dom';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -16,7 +21,7 @@ function getQueryString(param: TableGridParam): string {
 }
 
 interface MediaTableProps {
-  mediaData: ApiResponse<MediaItem[]>;
+  mediaData: ApiResponseWithSearch<MediaItem[]>;
   onChangeFilter: (query: string) => void;
   loading: boolean;
 }
@@ -27,15 +32,14 @@ export function MediaTable({
   loading,
 }: MediaTableProps) {
   const {params, setParams} = useDataGridParams();
+  const navigate = useNavigate();
 
   const rows = useMemo(() => {
     return (
-      mediaData?.Search?.map(item => [
-        item.Title,
-        item.imdbID,
-        item.Year,
-        item.Type,
-      ]) ?? []
+      mediaData?.Search?.map(item => ({
+        id: item.imdbID,
+        items: [item.Title, item.imdbID, item.Year, item.Type],
+      })) ?? []
     );
   }, [mediaData]);
 
@@ -62,6 +66,10 @@ export function MediaTable({
     handleOnChangeFilter(getQueryString({...params, [key]: value}));
   };
 
+  const handleOnClickRow = (id: string) => {
+    navigate(`/${id}`);
+  };
+
   return (
     <div className={classes.mediaTable}>
       <div className={classes.filterContainer}>
@@ -83,6 +91,7 @@ export function MediaTable({
         headers={['Title', 'IMDB Id', 'Year', 'Type']}
         rows={rows}
         loading={loading}
+        onClickRow={item => handleOnClickRow(item)}
       />
 
       <Pagination

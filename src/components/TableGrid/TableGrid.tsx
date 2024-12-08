@@ -1,17 +1,30 @@
 import classes from './TableGrid.module.scss';
 import {Loader} from '../Loader';
 
-export interface TableGridProps<Header = string, T = Record<string, unknown>> {
+export type TData = {
+  id: string;
+  items: string[];
+};
+
+export interface TableGridProps<Header = string, Column extends TData = TData> {
   headers: Header[];
-  rows: T[][];
+  rows: Column[];
   loading?: boolean;
+  onClickRow?: (id: string) => void;
 }
 
-export function TableGrid<Header = string, T = Record<string, unknown>>({
+export function TableGrid<Header, Column extends TData>({
   headers,
   rows,
   loading,
-}: TableGridProps<Header, T>) {
+  onClickRow,
+}: TableGridProps<Header, Column>) {
+  const handleOnClickRow = (row: Column) => {
+    if (onClickRow) {
+      onClickRow(row.id);
+    }
+  };
+
   return (
     <div className={classes.tableGrid}>
       <table className={classes.table}>
@@ -44,8 +57,12 @@ export function TableGrid<Header = string, T = Record<string, unknown>>({
             </tr>
           )}
           {rows.map((rowItem, index) => (
-            <tr key={index} className={classes.tableBodyRow}>
-              {rowItem.slice(0, headers.length).map((item, columnIndex) => (
+            <tr
+              key={index}
+              className={classes.tableBodyRow}
+              onClick={() => handleOnClickRow(rowItem)}
+            >
+              {rowItem.items.map((item, columnIndex) => (
                 <td key={columnIndex} className={classes.tableBodyCell}>
                   <>{item}</>
                 </td>
@@ -57,3 +74,8 @@ export function TableGrid<Header = string, T = Record<string, unknown>>({
     </div>
   );
 }
+/*
+<td key={columnIndex} className={classes.tableBodyCell}>
+                    <>{item}</>
+                  </td>
+*/

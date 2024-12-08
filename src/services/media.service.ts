@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import {MediaItem} from '../interfaces/media-item';
-import {ApiResponse} from '../interfaces';
+import {ApiResponseWithSearch, MediaItemExtended} from '../interfaces';
 
 function buildEndpointWithQuery(value: string, query: string) {
   if (!query) {
@@ -18,7 +18,10 @@ export const mediaService = createApi({
   reducerPath: 'media', // Redux store'daki anahtar
   baseQuery: fetchBaseQuery({baseUrl}),
   endpoints: builder => ({
-    getMediaList: builder.query<ApiResponse<MediaItem[]>, {query: string}>({
+    getMediaList: builder.query<
+      ApiResponseWithSearch<MediaItem[]>,
+      {query: string}
+    >({
       query: ({query}) => ({
         url: buildEndpointWithQuery('/', query),
         method: 'GET',
@@ -27,7 +30,21 @@ export const mediaService = createApi({
         },
       }),
     }),
+    getMediaDetail: builder.query<MediaItemExtended, {id: string}>({
+      query: ({id}) => ({
+        url: '/',
+        method: 'GET',
+        params: {
+          apikey: apiKey,
+          i: id,
+        },
+      }),
+    }),
   }),
 });
 
-export const {useGetMediaListQuery, useLazyGetMediaListQuery} = mediaService;
+export const {
+  useGetMediaListQuery,
+  useLazyGetMediaListQuery,
+  useGetMediaDetailQuery,
+} = mediaService;

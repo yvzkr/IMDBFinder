@@ -3,11 +3,17 @@ import {useGetMediaDetailQuery} from '../../services/media.service';
 import {MediaDetailSkeleton} from './components/MediaDetailSkeleton';
 import classes from './MediaDetail.module.scss';
 import defaultPoster from '../../images/poster.png';
+import {useApiKey} from '../../hooks';
 
 function MediaDetail() {
   const {id} = useParams();
   const navigate = useNavigate();
-  const {data, isLoading} = useGetMediaDetailQuery({id: id ?? ''});
+  const {apiKey} = useApiKey();
+
+  const {data, isLoading} = useGetMediaDetailQuery({
+    id: id ?? '',
+    apiKey: apiKey || '',
+  });
 
   const handleBack = () => {
     navigate(-1);

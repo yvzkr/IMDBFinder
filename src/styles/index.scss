@@ -1,7 +1,6 @@
 @import './variables';
 @import './font';
 
-// Global styles
 * {
   margin: 0;
   padding: 0;
@@ -28,7 +27,6 @@ h6 {
   font-weight: $font-semibold;
 }
 
-// Update existing components to use new font variables
 .pageTitle {
   font-size: $font-size-3xl;
   font-weight: $font-semibold;

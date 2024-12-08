@@ -12,17 +12,15 @@ function buildEndpointWithQuery(value: string, query: string) {
 
 const baseUrl = 'https://www.omdbapi.com';
 
-const apiKey = 'd6e263bd';
-
 export const mediaService = createApi({
   reducerPath: 'media', // Redux store'daki anahtar
   baseQuery: fetchBaseQuery({baseUrl}),
   endpoints: builder => ({
     getMediaList: builder.query<
       ApiResponseWithSearch<MediaItem[]>,
-      {query: string}
+      {query: string; apiKey: string}
     >({
-      query: ({query}) => ({
+      query: ({query, apiKey}) => ({
         url: buildEndpointWithQuery('/', query),
         method: 'GET',
         params: {
@@ -30,8 +28,11 @@ export const mediaService = createApi({
         },
       }),
     }),
-    getMediaDetail: builder.query<MediaItemExtended, {id: string}>({
-      query: ({id}) => ({
+    getMediaDetail: builder.query<
+      MediaItemExtended,
+      {id: string; apiKey: string}
+    >({
+      query: ({id, apiKey}) => ({
         url: '/',
         method: 'GET',
         params: {

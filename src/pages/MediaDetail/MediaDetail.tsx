@@ -1,11 +1,16 @@
-import {useParams} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 import {useGetMediaDetailQuery} from '../../services/media.service';
 import {Loader} from '../../components';
 import classes from './MediaDetail.module.scss';
 
 function MediaDetail() {
   const {id} = useParams();
+  const navigate = useNavigate();
   const {data} = useGetMediaDetailQuery({id: id ?? ''});
+
+  const handleBack = () => {
+    navigate(-1);
+  };
 
   if (!data) {
     return <Loader />;
@@ -13,6 +18,10 @@ function MediaDetail() {
 
   return (
     <div className={classes.container}>
+      <button onClick={handleBack} className={classes.backButton}>
+        ← Back to List
+      </button>
+
       <div className={classes.content}>
         <div className={classes.posterWrapper}>
           <img

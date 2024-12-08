@@ -80,3 +80,22 @@
     font-size: 0.85rem;
   }
 }
+
+.tableHeaderCell,
+.tableBodyCell {
+  .skeleton {
+    border-radius: 4px;
+  }
+}
+
+.tableHeaderCell {
+  .skeleton {
+    background-color: rgba($white, 0.2);
+  }
+}
+
+.tableBodyCell {
+  .skeleton {
+    background-color: rgba($primary-blue, 0.1);
+  }
+}

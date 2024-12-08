@@ -36,11 +36,11 @@
   margin-left: auto;
 
   &:hover {
-    background-color: darken($primary-blue, 10%);
+    background-color: $primary-dark-blue;
   }
 
   &:active {
-    background-color: darken($primary-blue, 15%);
+    background-color: $primary-dark-blue;
   }
 
   &:focus {

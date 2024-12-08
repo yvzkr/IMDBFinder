@@ -69,7 +69,7 @@
   transition: all 0.2s ease;
 
   &:hover:not(:disabled) {
-    background-color: darken($primary-blue, 10%);
+    background-color: $primary-dark-blue;
   }
 
   &:disabled {
@@ -83,6 +83,6 @@
   color: $white;
 
   &:hover:not(:disabled) {
-    background-color: darken($primary-red, 20%);
+    background-color: $primary-dark-red;
   }
 }
